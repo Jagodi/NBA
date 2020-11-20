@@ -1,6 +1,0 @@
-// mapping
-
-PUT http://localhost:8080/players/5/team
-Content-Type: text/uri-list
-
-http://localhost:8080/teams/1

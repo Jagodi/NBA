@@ -1,0 +1,25 @@
+// mapping
+
+PUT http://localhost:8080/players/1/team
+Content-Type: text/uri-list
+
+http://localhost:8080/teams/1
+
+// add team
+
+POST http://localhost:8080/team
+Content-Type: application/json
+
+{
+"teamName" : "Los Angeles Lakers"
+}
+
+// add player
+
+POST http://localhost:8080/player
+Content-Type: application/json
+
+{
+  "playerName" : "LeBron James",
+  "playerNumber" : 23
+}

@@ -3,15 +3,16 @@ package edu.devember.NBA.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "player")
 public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
+    @Column(name = "player_name")
     private String playerName;
+
+    @Column(name = "player_number")
     private int playerNumber;
 
     @ManyToOne
@@ -57,8 +58,6 @@ public class Player {
     public void setTeam(Team team) {
         this.team = team;
     }
-
-    // JPA hashcode and equals
 
     @Override
     public String toString() {

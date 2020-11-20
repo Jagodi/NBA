@@ -13,7 +13,7 @@ public class Team {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "teamName")
+    @Column(name = "team_name")
     private String teamName;
 
     @OneToMany(mappedBy = "team")
