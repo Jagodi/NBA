@@ -15,6 +15,8 @@ public class Player {
     @Column(name = "player_number")
     private int playerNumber;
 
+    private double salary;
+
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
@@ -22,9 +24,10 @@ public class Player {
     public Player() {
     }
 
-    public Player(String playerName, int playerNumber) {
+    public Player(String playerName, int playerNumber, double salary) {
         this.playerName = playerName;
         this.playerNumber = playerNumber;
+        this.salary = salary;
     }
 
     public Long getId() {
@@ -59,12 +62,22 @@ public class Player {
         this.team = team;
     }
 
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
     @Override
     public String toString() {
         return "Player{" +
                 "id=" + id +
                 ", playerName='" + playerName + '\'' +
                 ", playerNumber=" + playerNumber +
+                ", salary=" + salary +
+                ", team=" + team +
                 '}';
     }
 }

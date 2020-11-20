@@ -66,7 +66,7 @@ public class Team {
         return "Team{" +
                 "id=" + id +
                 ", teamName='" + teamName + '\'' +
-                ", team=" + players +
+                ", players=" + players +
                 '}';
     }
 }

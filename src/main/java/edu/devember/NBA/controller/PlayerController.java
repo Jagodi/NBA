@@ -1,5 +1,6 @@
 package edu.devember.NBA.controller;
 
+import edu.devember.NBA.exception.EntityNotFoundException;
 import edu.devember.NBA.model.Player;
 import edu.devember.NBA.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class PlayerController {
@@ -15,8 +19,9 @@ public class PlayerController {
     @Autowired
     PlayerRepository thePlayerRepository;
 
-    @GetMapping("/test/{playerID}")
-    public String getSmall(@PathVariable int playerID) {
+    // return a short name based on a player name
+    @GetMapping("/fun/{playerID}")
+    public String getShortName(@PathVariable int playerID) {
 
         Player thePlayer;
 
@@ -24,12 +29,23 @@ public class PlayerController {
         if (optionalPlayer.isPresent()) {
             thePlayer = optionalPlayer.get();
         } else {
-            throw new RuntimeException("Did not find employee id - " + playerID);
+            throw new EntityNotFoundException("Did not find player with id - " + playerID);
         }
 
-        // some work
-        String result = thePlayer.getPlayerName().substring(0,3);
+        return Arrays.stream(thePlayer.getPlayerName().split(" "))
+                .map(a -> a.substring(0, 1))
+                .collect(Collectors.joining());
 
-        return result;
     }
+
+
+    /*@GetMapping("/fun/{playerID}")
+    public String getTestShort(@PathVariable int playerID) {
+
+        Player thePlayer = thePlayerRepository
+                            .findById((long) playerID)
+                            .orElseThrow(EntityNotFoundException::new);
+
+        return thePlayer.getPlayerName().substring(0,3);
+    }*/
 }
